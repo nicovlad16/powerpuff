@@ -56,10 +56,18 @@
 							</li> 
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>login">Login</a></li>
 						</ul>
-						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="#" class="tickets_btn">Get Tickets</a></li>
-							<li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
-						</ul>
+						<?php
+						    $login = $this->session->userdata('login');
+						    if(isset($login) and !empty($login)):
+
+
+						?>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="nav-item"><a href="#" class="tickets_btn"><?= $login['username'] ?></a></li>
+								<li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+							</ul>
+						<?php endif; ?>
+
 					</div> 
 				</div>
         	</nav>
