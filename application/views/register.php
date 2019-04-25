@@ -48,9 +48,8 @@
                 </div>
             <?php endif ?>
         <div class="row">
-            <div style="margin: auto;">
                 <form class="row contact_form" action="<?=base_url()?>login/check" method="post" id="contactForm" novalidate="novalidate">
-                    <div class="col-md-12">
+                    <div class="col-md-offset-4 col-md-8">
                         <div class="form-group">
                             <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
                         </div>
@@ -62,7 +61,6 @@
                         <button type="submit" value="submit" class="btn submit_btn">Login</button>
                     </div>
                 </form>
-            </div>
         </div>
     </div>
 </section>
