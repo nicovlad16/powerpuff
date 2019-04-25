@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		// ceva jmk
+		//Cv mai jmk
 		$this->load->view('welcome_message');
 	}
 }
