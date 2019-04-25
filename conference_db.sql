@@ -1,0 +1,260 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Gazdă: 127.0.0.1
+-- Timp de generare: apr. 25, 2019 la 09:56 AM
+-- Versiune server: 10.1.37-MariaDB
+-- Versiune PHP: 7.3.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Bază de date: `conference_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `bidding`
+--
+
+CREATE TABLE `bidding` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL COMMENT 'reviewer id',
+  `answer` int(11) DEFAULT NULL,
+  `pid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `conference`
+--
+
+CREATE TABLE `conference` (
+  `id` int(11) NOT NULL,
+  `date_start` datetime NOT NULL,
+  `date_end` datetime NOT NULL,
+  `location` text NOT NULL,
+  `no_participants` int(11) NOT NULL,
+  `no_speakers` int(11) NOT NULL,
+  `abstract_deadline` datetime NOT NULL,
+  `paper_deadline` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `paper`
+--
+
+CREATE TABLE `paper` (
+  `id` int(11) NOT NULL,
+  `abstract` text NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `keywords` varchar(255) NOT NULL,
+  `topics` text NOT NULL,
+  `meta_info` text NOT NULL,
+  `paper` text,
+  `file` varchar(255) DEFAULT NULL,
+  `answer` int(11) DEFAULT NULL,
+  `uid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `presentation`
+--
+
+CREATE TABLE `presentation` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `sid` int(11) NOT NULL,
+  `hour` int(11) NOT NULL,
+  `document` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `review`
+--
+
+CREATE TABLE `review` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `qualifier` int(11) NOT NULL,
+  `recomandation` text
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `session`
+--
+
+CREATE TABLE `session` (
+  `id` int(11) NOT NULL,
+  `cid` int(11) NOT NULL,
+  `hour_start` int(11) NOT NULL,
+  `hour_end` int(11) NOT NULL,
+  `room` varchar(255) NOT NULL,
+  `no_participants` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `session_participant`
+--
+
+CREATE TABLE `session_participant` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `sid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `type` int(11) DEFAULT NULL COMMENT '1-chair / 2-co-chair / 3-comitet / 4-author / 5-listener',
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `affiliation` text,
+  `webpage` varchar(255) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Eliminarea datelor din tabel `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `type`, `name`, `email`, `affiliation`, `webpage`) VALUES
+(1, 'chair.boss', '4297f44b13955235245b2497399d7a93', 1, 'Chair Boss', 'chair@powerpuff.ro', NULL, NULL);
+
+--
+-- Indexuri pentru tabele eliminate
+--
+
+--
+-- Indexuri pentru tabele `bidding`
+--
+ALTER TABLE `bidding`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `conference`
+--
+ALTER TABLE `conference`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `paper`
+--
+ALTER TABLE `paper`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `presentation`
+--
+ALTER TABLE `presentation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `session_participant`
+--
+ALTER TABLE `session_participant`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexuri pentru tabele `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pentru tabele eliminate
+--
+
+--
+-- AUTO_INCREMENT pentru tabele `bidding`
+--
+ALTER TABLE `bidding`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `conference`
+--
+ALTER TABLE `conference`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `paper`
+--
+ALTER TABLE `paper`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `presentation`
+--
+ALTER TABLE `presentation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `review`
+--
+ALTER TABLE `review`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `session`
+--
+ALTER TABLE `session`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `session_participant`
+--
+ALTER TABLE `session_participant`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pentru tabele `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
