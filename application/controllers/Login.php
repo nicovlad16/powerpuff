@@ -3,14 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-	public function index()
-	{
-		$this->load->view('header');
-		$this->load->view('login');
-		$this->load->view('footer');
-	}
+    public function index()
+    {
+        $this->load->view('header');
+        $this->load->view('login');
+        $this->load->view('footer');
+    }
 
-	public function check() {
+    public function check() {
 
         $this->load->library('form_validation');
         $this->load->model('Account_model');
@@ -27,7 +27,12 @@ class Login extends CI_Controller {
             if(isset($user) and !empty($user)) {
                 if(md5($p['password']) == $user['password']) { 
 
-                    $user_data = array('id' => $user['id'], 'is_logged_in' => 1, $type = $user['type']);
+                    $user_data = array(
+                        'id' => $user['id'], 
+                        'username' => $user['username'], 
+                        'is_logged_in' => 1, 
+                        'type' => $user['type']
+                    );
                     $this->session->set_userdata('login', $user_data);
 
                     $this->session->set_flashdata('success', "Ai fost logat cu succes!");
@@ -49,11 +54,11 @@ class Login extends CI_Controller {
         }
 
         redirect('login');
-	}
+    }
 
-	public function logout() {
-		
-        $sess_array = array('id' => '');
+    public function logout() {
+        
+       // $sess_array = array('id' => '');
         $this->session->unset_userdata('login', $sess_array);
 
         $this->session->set_flashdata('success_logout', "Tocmai ai fost delogat!");
