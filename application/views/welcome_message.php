@@ -68,6 +68,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 
 <div id="container">
+	<?php if($this->session->flashdata('success') != ''):?>
+                            <div class="alert alert-success" role="alert">
+                                <?= $this->session->flashdata('success'); ?>
+                            </div>
+                        <?php endif ?>
 	<h1 align="center">Hello from <b>Conference Manager!</b></h1>
 
 	<div id="body">
