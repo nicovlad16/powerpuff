@@ -1,4 +1,3 @@
-<!--================Home Banner Area =================-->
 <section class="banner_area">
     <div class="banner_inner d-flex align-items-center">
         <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
@@ -67,13 +66,3 @@
         </div>
     </div>
 </section>
-<!--================End Login Area =================-->
-
-<!--================ Style Area =================-->
-<style type="text/css">
-    .form-control {
-        background-color: #cfcaca;
-        color: #000;    
-    }
-</style>
-<!--================End Style Area =================-->

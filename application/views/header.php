@@ -1,38 +1,30 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" href="<?=base_url()?>application/views/img/favicon.png" type="image/png">
-        <title>Eventure Multi</title>
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="<?=base_url()?>application/views/css/bootstrap.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/linericon/style.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/css/font-awesome.min.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/owl-carousel/owl.carousel.min.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/lightbox/simpleLightbox.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/nice-select/css/nice-select.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/animate-css/animate.css">
-        <!-- main css -->
-        <link rel="stylesheet" href="<?=base_url()?>application/views/css/style.css">
-        <link rel="stylesheet" href="<?=base_url()?>application/views/css/responsive.css">
-    </head>
-    <body>
-         
-    <!--================Header Menu Area =================-->
+<head>
+    <meta charset="utf-8">
+    <title>Conference management</title>
+    <link rel="stylesheet" href="<?=base_url()?>application/views/css/bootstrap.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/linericon/style.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/animate-css/animate.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/css/style.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/css/responsive.css">
+    <link rel="stylesheet" href="<?=base_url()?>application/views/css/custom.css">
+</head>
+<body>
     <header class="header_area">
         <div class="main_menu">
         	<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container box_1620">
-					<!-- Brand and toggle get grouped for better mobile display -->
 					<a class="navbar-brand logo_h" href="<?=base_url()?>"><img src="<?=base_url()?>application/views/img/logo.png" alt=""></a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="<?=base_url()?>">Home</a></li> 
@@ -76,5 +68,4 @@
         	</nav>
         </div>
     </header>
-    <!--================Header Menu Area =================-->
         
