@@ -1,4 +1,11 @@
 .form-control {
-    background-color: #cfcaca;
+    background-color: #dad9e5;
     color: #000;    
+}
+.register-form {
+	width: 100%;
+}
+.p_60 {
+  padding-top: 60px;
+  padding-bottom: 60px;
 }

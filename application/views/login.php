@@ -71,12 +71,3 @@
     </div>
 </section>
 <!--================End Login Area =================-->
-
-<!--================ Style Area =================-->
-<style type="text/css">
-    .form-control {
-        background-color: #cfcaca;
-        color: #000;    
-    }
-</style>
-<!--================End Style Area =================-->

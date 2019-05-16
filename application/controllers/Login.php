@@ -58,7 +58,6 @@ class Login extends CI_Controller {
 
     public function logout() {
         
-       // $sess_array = array('id' => '');
         $this->session->unset_userdata('login', $sess_array);
 
         $this->session->set_flashdata('success_logout', "Tocmai ai fost delogat!");

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Conference management</title>
+    <title>Powerpuff - Conference management</title>
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/bootstrap.css">
     <link rel="stylesheet" href="<?=base_url()?>application/views/vendors/linericon/style.css">
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/font-awesome.min.css">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/style.css">
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/responsive.css">
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/custom.css">
+    <?php $login = $this->session->userdata('login'); ?>
 </head>
 <body>
     <header class="header_area">
@@ -46,23 +47,25 @@
 									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
 								</ul>
 							</li> 
-						<?php
-						    $login = $this->session->userdata('login');
-						    if(isset($login) and !empty($login)):
-
-						?>
+						<?php if(isset($login) && $login['type'] >= 1 && $login['type'] <= 3): ?>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conferences</a>
+								<ul class="dropdown-menu">
+									<li class="nav-item"><a class="nav-link" href="<?=base_url()?>conferences">My conferences</a></li>
+								</ul>
+							</li> 
+						<?php endif; ?>
+						<?php if(isset($login) and !empty($login)): ?>
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>login/logout">Logout</a></li>
 						</ul>
 
 							<ul class="nav navbar-nav navbar-right">
-								<li class="nav-item"><a href="#" class="tickets_btn"><?= $login['username'] ?></a></li>
-								<li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+								<li class="nav-item"><a href="#" class="tickets_btn">Welcome <?= $login['username'] ?></a></li>
 							</ul>
 						<?php else: ?>
 								<li class="nav-item"><a class="nav-link" href="<?=base_url()?>login">Login</a></li>
 							</ul>
 						<?php endif; ?>
-
 					</div> 
 				</div>
         	</nav>
