@@ -25,3 +25,31 @@
         
     </div>
 </section>
+
+<section class="contact_area p_61">
+    <div class="container">
+        <section class="event_schedule_area">
+            <div class="container">
+                <div class="event_schedule_inner">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <?php if(isset($confs)): ?>
+                                <?php foreach ($confs as $conf):?>
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5><?= $conf['date_start'] ?> -- <?= $conf['date_end'] ?></h5>
+                                            <h4><?= $conf['name'] ?> </h4>
+                                            <p><?= $conf['location'] ?></p>
+                                        </div>
+                                            <a href="<?=base_url()?>submitter/submit/<?=$conf['id']?>" class="tickets_btn buton_submit" name="Submit">Submit</a>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
