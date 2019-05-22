@@ -34,6 +34,12 @@
                 </div>
             <?php endif ?>
 
+            <?php if($this->session->flashdata('error_username') != ''):?>
+                <div class="alert alert-danger" role="alert">
+                    <?= $this->session->flashdata('error_username'); ?>
+                </div>
+            <?php endif ?>
+
             <?php if($this->session->flashdata('error_status') != ''):?>
                 <div class="alert alert-danger" role="alert">
                     <?= $this->session->flashdata('error_status'); ?>

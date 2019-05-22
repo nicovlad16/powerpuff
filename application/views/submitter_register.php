@@ -7,7 +7,7 @@
                     <a href="index.html">Home</a>
                     <a href="contact.html">Register</a>
                 </div>
-                <h2>Register PC member</h2>
+                <h2>Register Submitter</h2>
             </div>
         </div>
     </div>
@@ -27,8 +27,13 @@
 	            <?= $this->session->flashdata('error'); ?>
 	        </div>
 	    <?php endif ?>
+        <?php if($this->session->flashdata('error_dublicate') != ''):?>
+            <div class="alert alert-danger" role="alert">
+                <?= $this->session->flashdata('error_dublicate'); ?>
+            </div>
+        <?php endif ?>
 
-        <form class="register-form contact_form" action="<?=base_url()?>register/check" method="post" id="contactForm" novalidate="novalidate">
+        <form class="register-form contact_form" action="<?=base_url()?>submitter/check" method="post" id="contactForm" novalidate="novalidate">
             <div class="form-group">
                 <input type="text" name="name" placeholder="Name *" required class="single-input form-control">
             </div>
@@ -39,30 +44,13 @@
                 <input type="text" name="affiliation" placeholder="Affiliation" class="single-input form-control">
             </div>
             <div class="form-group">
-                <input type="text" name="webpage" placeholder="Webpage" class="single-input form-control">
-            </div>
-            <div class="form-group">
                 <input type="text" name="username" placeholder="Username *" required class="single-input form-control">
             </div>
             <div class="form-group">
                 <input type="password" name="password" placeholder="Password *" required class="single-input form-control">
             </div>
-            <div class="form-group">
-            	<label> Chair
-                	<input type="radio" name="role" required value="1">
-	            </label>
-            </div>
-            <div class="form-group">
-            	<label> Co-chair
-                	<input type="radio" name="role" required value="2">
-	            </label>
-            </div>
-            <div class="form-group">
-            	<label> Committee
-                	<input type="radio" name="role" required value="3">
-	            </label>
-            </div>
-            <button type="submit" value="submit" class="btn submit_btn">Submit</button>
+            <input type="hidden" name="role" required value="6">
+            <button type="submit" value="submit" class="btn submit_btn">Register</button>
         </form>
     </div>
 </section>

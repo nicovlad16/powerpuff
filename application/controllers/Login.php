@@ -25,6 +25,7 @@ class Login extends CI_Controller {
             $user = $this->Account_model->get_user_by_username($p['username']);
 
             if(isset($user) and !empty($user)) {
+
                 if(md5($p['password']) == $user['password']) { 
 
                     $user_data = array(
@@ -36,6 +37,10 @@ class Login extends CI_Controller {
                     $this->session->set_userdata('login', $user_data);
 
                     $this->session->set_flashdata('success', "Ai fost logat cu succes!");
+
+                    if($user['type'] == 6) {
+                        redirect('submitter');
+                    }
                     redirect('');
 
                 } else {
@@ -45,7 +50,6 @@ class Login extends CI_Controller {
                 }
 
             } else {
-
                 $this->session->set_flashdata('error_username', "Nu exista username-ul acesta in baza de date!");
             }
         } else {
