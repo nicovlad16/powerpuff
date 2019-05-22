@@ -11,9 +11,13 @@ class Submitter extends CI_Controller {
 
     public function index() {
 
+        $login = $this->session->userdata('login');
+		if(!isset($login) || $login['type'] != 4) {
+			redirect();
+		}
+
         $this->load->model('Account_model');
         
-        $login = $this->session->userdata('login');
         $user = $this->Account_model->get_user_by_username($login['username']);
 
         $data = array();

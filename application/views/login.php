@@ -72,6 +72,8 @@
                         <button type="submit" value="submit" class="btn submit_btn">Login</button>
                     </div>
                 </form>
+                <br>
+                <a href="<?= base_url() ?>register">Register staff</a> &nbsp; &nbsp; &nbsp; <a href="<?= base_url() ?>submitter/register">Register submitter</a>
             </div>
         </div>
     </div>
