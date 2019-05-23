@@ -49,7 +49,7 @@
             <div class="form-group">
                 <input type="password" name="password" placeholder="Password *" required class="single-input form-control">
             </div>
-            <input type="hidden" name="role" required value="6">
+            <input type="hidden" name="role" required value="4">
             <button type="submit" value="submit" class="btn submit_btn">Register</button>
         </form>
     </div>

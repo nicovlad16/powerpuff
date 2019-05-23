@@ -43,6 +43,7 @@
 											<h4><?= $conf['name'] ?> <a href="<?=base_url()?>conferences/edit/<?=$conf['id']?>"><i class="fa fa-pencil"></i></a></h4>
 											<p><?= $conf['location'] ?></p>
 										</div>
+                                        <a href="<?=base_url()?>conferences/proposals/<?=$conf['id']?>" class="tickets_btn buton_submit">View poposals</a>
 									</div>
 								<?php endforeach; ?>
 							<?php endif; ?>

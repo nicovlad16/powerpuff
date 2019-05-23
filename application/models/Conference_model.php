@@ -23,4 +23,24 @@ class Conference_model extends CI_Model {
 
 		return $this->db->get()->row_array();
 	}
+
+	public function get_papers_by_conf_id($id) {
+
+		$this->db->select('p.*, c.name');
+		$this->db->from('paper p');
+		$this->db->join('conference c', 'p.cid = c.id');
+		$this->db->where('p.cid', $id);
+
+		return $this->db->get()->result_array();
+	}
+
+	public function get_paper_by_id($id) {
+
+		$this->db->select('p.*, c.*');
+		$this->db->from('paper p');
+		$this->db->join('conference c', 'p.cid = c.id');
+		$this->db->where('p.id', $id);
+
+		return $this->db->get()->row_array();
+	}
 }

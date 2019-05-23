@@ -11,9 +11,13 @@ class Submitter extends CI_Controller {
 
     public function index() {
 
+        $login = $this->session->userdata('login');
+		if(!isset($login) || $login['type'] != 4) {
+			redirect();
+		}
+
         $this->load->model('Account_model');
         
-        $login = $this->session->userdata('login');
         $user = $this->Account_model->get_user_by_username($login['username']);
 
         $data = array();
@@ -118,8 +122,12 @@ class Submitter extends CI_Controller {
             $this->db->set('abstract', $p['abstract']);
             $this->db->set('paper', $p['paper']);
             $this->db->set('uid', $login['id']);
+            $this->db->set('cid', $id);
+
+
 
             if($id == 0) {
+                
                 if($this->db->insert('paper')) {
                     $this->session->set_flashdata('success', "Paper added successfull!");
                 }
@@ -133,9 +141,11 @@ class Submitter extends CI_Controller {
             $this->session->set_flashdata('error', validation_errors());
         }
 
+
         if($id == 0) {
             redirect('submitter/submit/'.$p['conference_id']);
         } else {
+
             redirect('submitter/edit/'.$id);
         }
     }
