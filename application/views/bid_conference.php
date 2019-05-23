@@ -5,9 +5,10 @@
             <div class="banner_content text-center">
                 <div class="page_link">
                     <a href="index.html">Home</a>
-                    <a href="contact.html">Conferences</a>
+                    <a>Conferences</a>
+                    <a>Bid proposals</a>
                 </div>
-                <h2>My conferences</h2>
+                <h2>Bid proposals</h2>
             </div>
         </div>
     </div>
@@ -27,23 +28,20 @@
 	            <?= $this->session->flashdata('error'); ?>
 	        </div>
 	    <?php endif ?>
-        
         <section class="event_schedule_area">
         	<div class="container">
-        		<a href="<?=base_url()?>conferences/add" class="genric-btn info-border" style="font-size: 14px;">Add new</a>
         		<br><br>
         		<div class="event_schedule_inner">
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-							<?php if(isset($confs)): ?>
-								<?php foreach ($confs as $conf):?>
+							<?php if(isset($abstracts)): ?>
+								<?php foreach ($abstracts as $abs):?>
 									<div class="media">
 										<div class="media-body">
-											<h5><?= $conf['date_start'] ?> -- <?= $conf['date_end'] ?></h5>
-											<h4><?= $conf['name'] ?> <a href="<?=base_url()?>conferences/edit/<?=$conf['id']?>"><i class="fa fa-pencil"></i></a></h4>
-											<p><?= $conf['location'] ?></p>
+											<h4><?= $abs['title'] ?></h4>
+											<p>Topics: <?= $abs['topics'] ?></p>
 										</div>
-                                        <a href="<?=base_url()?>conferences/proposals/<?=$conf['id']?>" class="tickets_btn buton_submit">View poposals</a>
+                                        <a href="<?=base_url()?>bidding/index/<?=$abs['id']?>" class="tickets_btn buton_submit">View abstract</a>
 									</div>
 								<?php endforeach; ?>
 							<?php endif; ?>

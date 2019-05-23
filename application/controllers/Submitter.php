@@ -113,11 +113,12 @@ class Submitter extends CI_Controller {
             $this->db->set('abstract', $p['abstract']);
             $this->db->set('paper', $p['paper']);
             $this->db->set('uid', $login['id']);
+            $this->db->set('cid', $id);
 
             $this->load->helper(array('form','url'));
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'pdf';
-            $config['max_size']    = 0;
+            //$config['max_size']    = 0;
      
             $this->load->library('upload', $config);
      
@@ -132,24 +133,24 @@ class Submitter extends CI_Controller {
                   print_r($this->upload->data());
             }
 
-            if($id == 0) {
+            /*if($id == 0) {*/
                 if($this->db->insert('paper')) {
                     $this->session->set_flashdata('success', "Paper added successfull!");
                 }
-            } else {
+            /*} else {
                 $this->db->where('paper', $id);
                 if($this->db->update('conference')) {
                     $this->session->set_flashdata('success', "Paper updated successfull!");
                 }
-            }
+            }*/
         } else {
             $this->session->set_flashdata('error', validation_errors());
         }
 
-        if($id == 0) {
-            redirect('submitter/submit');
-        } else {
+        //if($id == 0) {
+            redirect('submitter/submit/'.$id);
+        /*} else {
             redirect('submitter/edit/'.$id);
-        }
+        }*/
     }
 }

@@ -11,74 +11,54 @@ class Bidding extends CI_Controller {
 			redirect();
 		}
 		$this->load->model('conference_model', 'confm');
+		$this->load->model('bidding_model', 'bidm');
 	}
 
-	public function index($data = array()) {
-
-		$data['confs'] = $this->confm->get_all_conferences();
-
-		$this->load->view('header');
-		$this->load->view('bid_conferences', $data);
-		$this->load->view('footer');
-	}
-
-	public function add() {
-
-		$this->load->view('header');
-		$this->load->view('conference_add');
-		$this->load->view('footer');
-	}
-
-	public function edit($id = 0) {
+	public function index($id) {
 
 		$data['id'] = $id;
-		$data['conf'] = $this->confm->get_conference_by_id($id);
+		$data['abs'] = $this->confm->get_paper_by_id($id);
+
+		$login = $this->session->userdata('login');
+		$bid = $this->bidm->get_bid($login['id'], $id);
+		if(isset($bid) && !empty($bid)) {
+			$data['voted'] = 1;
+		} else {
+			$data['voted'] = 0;
+		}
 
 		$this->load->view('header');
-		$this->load->view('conference_add', $data);
+		$this->load->view('bid_abstract', $data);
 		$this->load->view('footer');
 	}
 
-	public function save($id = 0) {
+	public function set_yes($id) {
 
-        $this->load->library('form_validation');
+		$login = $this->session->userdata('login');
 
-        $this->form_validation->set_rules('name', 'Name', 'trim|required');
-        $this->form_validation->set_rules('date_start', 'Date start', 'trim|required');
-        $this->form_validation->set_rules('date_end', 'Date end', 'trim|required');
-        $this->form_validation->set_rules('location', 'Location', 'trim|required');
-        $this->form_validation->set_rules('abstract_deadline', 'Abstract deadline', 'trim|required');
-        $this->form_validation->set_rules('paper_deadline', 'Paper deadline', 'trim');
+		$this->db->set('uid', $login['id']);
+		$this->db->set('answer', 1);
+		$this->db->set('pid', $id);
+		
+		if($this->db->insert('bidding')) {
+			$this->session->set_flashdata('success', 'Bid added successfully');
+		}
 
-        if($this->form_validation->run() == True) {
+		redirect('bidding/index/'.$id);
+    }
 
-        	$p = $this->input->post();
+	public function set_no($id) {
 
-        	$this->db->set('name', $p['name']);
-        	$this->db->set('date_start', $p['date_start']);
-        	$this->db->set('date_end', $p['date_end']);
-        	$this->db->set('location', $p['location']);
-        	$this->db->set('abstract_deadline', $p['abstract_deadline']);
-        	$this->db->set('paper_deadline', $p['paper_deadline']);
+		$login = $this->session->userdata('login');
 
-        	if($id == 0) {
-	        	if($this->db->insert('conference')) {
-		            $this->session->set_flashdata('success', "Conference added successfull!");
-	        	}
-	        } else {
-	        	$this->db->where('id', $id);
-	        	if($this->db->update('conference')) {
-		            $this->session->set_flashdata('success', "Conference updated successfull!");
-	        	}
-	        }
-        } else {
-            $this->session->set_flashdata('error', validation_errors());
-        }
+		$this->db->set('uid', $login['id']);
+		$this->db->set('answer', 0);
+		$this->db->set('pid', $id);
+		
+		if($this->db->insert('bidding')) {
+			$this->session->set_flashdata('success', 'Bid added successfully');
+		}
 
-        if($id == 0) {
-        	redirect('conferences/add');
-        } else {
-        	redirect('conferences/edit/'.$id);
-        }
+		redirect('bidding/index/'.$id);
     }
 }
