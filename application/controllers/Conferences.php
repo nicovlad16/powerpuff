@@ -81,4 +81,13 @@ class Conferences extends CI_Controller {
         	redirect('conferences/edit/'.$id);
         }
     }
+
+	public function proposals($id) {
+
+		$data['abstracts'] = $this->confm->get_papers_by_conf_id($id);
+
+		$this->load->view('header');
+		$this->load->view('bid_conference', $data);
+		$this->load->view('footer');
+	}
 }
