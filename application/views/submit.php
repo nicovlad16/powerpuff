@@ -45,13 +45,13 @@
                 <textarea value="<?= isset($paper['abstract']) ? $paper['abstract'] : ''; ?>" type="text" name="abstract" placeholder="Abstract *" required class="single-input form-control"></textarea>
             </div>
             <div class="form-group">
-                <input value="<?= isset($paper['paper']) ? $paper['paper'] : ''; ?>" type="text" name="paper" placeholder="Paper " required class="single-input form-control">
+                <textarea value="<?= isset($paper['paper']) ? $paper['paper'] : ''; ?>" type="text" name="paper" placeholder="Paper " required class="single-input form-control"></textarea>
             </div>
             <div class="form-group">
-                <input type="file" name="file" id="file">
+                <input type="file" name="pdf" id="pdf">
             </div>
 
-            <input type="hidden" name="id" value="<?=$id?>">
+            <input type="hidden" name="conference_id" value="<?=$id_conference?>">
             <button type="submit" value="submit" class="btn submit_btn">Submit</button>
         </form>
     </div>
