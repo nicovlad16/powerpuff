@@ -36,7 +36,7 @@ class Conference_model extends CI_Model {
 
 	public function get_paper_by_id($id) {
 
-		$this->db->select('p.*, c.name');
+		$this->db->select('p.*, c.*');
 		$this->db->from('paper p');
 		$this->db->join('conference c', 'p.cid = c.id');
 		$this->db->where('p.id', $id);
