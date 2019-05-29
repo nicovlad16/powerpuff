@@ -26,6 +26,19 @@
 </section>
 <section class="contact_area p_61">
     <div class="container">
+        <?php if(isset($error)): ?>
+            <p><?= $error; ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('success') != ''):?>
+            <div class="alert alert-success" role="alert">
+                <?= $this->session->flashdata('success'); ?>
+            </div>
+        <?php endif ?>
+        <?php if($this->session->flashdata('error') != ''):?>
+            <div class="alert alert-danger" role="alert">
+                <?= $this->session->flashdata('error'); ?>
+            </div>
+        <?php endif ?>
         <section class="event_schedule_area">
             <div class="container">
                 <div class="event_schedule_inner">

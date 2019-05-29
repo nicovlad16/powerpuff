@@ -198,7 +198,7 @@ class Submitter extends CI_Controller {
 
 
         if($id == 0) {
-            redirect('submitter/submit/'.$p['conference_id']);
+            redirect('submitter/');
         } else {
 
             redirect('submitter/edit_paper/'.$id.'/'.$p['conference_id']);
