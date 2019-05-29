@@ -18,4 +18,14 @@ class Paper_model extends CI_Model {
 		$result = $this->db->get_where('paper', array('id' => $id));
 		return $result->row_array();
 	}
+
+	public function check_approved($pid) {
+
+		$this->db->select('*');
+		$this->db->from('paper');
+		$this->db->where('id', $pid);
+		$this->db->where('answer', 1);
+
+		return $this->db->get()->row_array();
+	}
 }

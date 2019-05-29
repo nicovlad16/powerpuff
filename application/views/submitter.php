@@ -52,12 +52,14 @@
                                             <h4><?= $conf['name'] ?> </h4>
                                             <p><?= $conf['location'] ?></p>
                                         </div>
+ 											<?php if($papers[$conf['id']]['accepted'] == 1): ?>
+                                                <a href="<?=base_url()?>submitter/submit/<?=$conf['id']?>" class="tickets_btn buton_submit" name="Submit">Upload prez</a> &nbsp;&nbsp;
+                                            <?php endif; ?>
                                             <?php if($papers[$conf['id']] == 0): ?>
                                                 <a href="<?=base_url()?>submitter/submit/<?=$conf['id']?>" class="tickets_btn buton_submit" name="Submit">Submit</a>
                                             <?php else: ?>
                                                 <a href="<?=base_url()?>submitter/edit_paper/<?=$papers['pid']?>/<?=$conf['id']?>" class="tickets_btn buton_submit button_edit" name="Submit">Edit</a>
                                             <?php endif; ?>
-
                                     </div>
                                 <?php endforeach; ?>
                             <?php endif; ?>
