@@ -38,8 +38,12 @@ class Login extends CI_Controller {
 
                     $this->session->set_flashdata('success', "Ai fost logat cu succes!");
 
-                    if($user['type'] == 6) {
+                    if($user['type'] == 4) {
                         redirect('submitter');
+                    }
+
+                    if($user['type'] == 5) {
+                        redirect('listener');
                     }
                     redirect('');
 
