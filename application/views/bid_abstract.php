@@ -44,7 +44,7 @@
         					<p><strong>Topics:</strong> <?= $abs['topics'] ?></p>
         					<p><strong>Keywords:</strong> <?= $abs['keywords'] ?></p>
         					<?php if(!empty($abs['file'])): ?>
-								<a href="<?= base_url() ?>" target="_blank"><?= $abs['file'] ?></a>
+								<strong>File:</strong> <a href="<?= base_url() ?>files/<?=$paper['file']?>" target="_blank"><?= $paper['file'] ?></a>
 	        				<?php endif; ?>
         					<?php if($abs['bidding_deadline'] < date("Y-m-d H:i:s")): ?>
 								<div class="alert alert-danger" role="alert">

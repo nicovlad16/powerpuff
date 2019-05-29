@@ -42,17 +42,18 @@
                 <input value="<?= isset($paper['meta_info']) ? $paper['meta_info'] : ''; ?>" type="text" name="meta_info" placeholder="Meta info *" required class="single-input form-control">
             </div>
             <div class="form-group">
-                <textarea value="<?= isset($paper['abstract']) ? $paper['abstract'] : ''; ?>" type="text" name="abstract" placeholder="Abstract *" required class="single-input form-control"></textarea>
+                <textarea type="text" name="abstract" placeholder="Abstract *" required class="single-input form-control"><?= isset($paper['abstract']) ? $paper['abstract'] : ''; ?></textarea>
             </div>
             <div class="form-group">
-                <textarea value="<?= isset($paper['paper']) ? $paper['paper'] : ''; ?>" type="text" name="paper" placeholder="Paper " required class="single-input form-control"></textarea>
+                <textarea type="text" name="paper" placeholder="Paper " required class="single-input form-control"><?= isset($paper['paper']) ? $paper['paper'] : ''; ?></textarea>
             </div>
+            <?= isset($paper['file']) ? 'File in db: '.$paper['file'] : '' ?>
             <div class="form-group">
                 <input type="file" name="pdf" id="pdf">
             </div>
 
             <input type="hidden" name="conference_id" value="<?=$id_conference?>">
-            <button type="submit" value="submit" class="btn submit_btn">Submit</button>
+            <button type="submit" value="submit" class="btn submit_btn"><?= isset($id) ? 'Edit paper' : 'Submit paper' ?></button>
         </form>
     </div>
 </section>

@@ -18,3 +18,7 @@
 .buton_submit {
   float: right;
 }
+
+.button_edit {
+  background-image: linear-gradient(to right, #dc3545 0%, #9b5cf6 51%, #dc3545 100%);
+}

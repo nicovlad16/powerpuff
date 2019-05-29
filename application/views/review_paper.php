@@ -31,7 +31,7 @@
         					<p><strong>Topics:</strong> <?= $paper['topics'] ?></p>
         					<p><strong>Keywords:</strong> <?= $paper['keywords'] ?></p>
 							<?php if(!empty($paper['file'])): ?>
-								<a href="<?= base_url() ?>" target="_blank"><?= $paper['file'] ?></a>
+								<strong>File:</strong> <a href="<?= base_url() ?>files/<?=$paper['file']?>" target="_blank"><?= $paper['file'] ?></a>
 	        				<?php endif; ?>
         				</div>
         			</div>

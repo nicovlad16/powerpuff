@@ -7,6 +7,8 @@ class Submitter extends CI_Controller {
         parent::__construct();
 
         $this->load->model('Conference_model', 'confm');
+        $this->load->model('Paper_model', 'paperm');
+        $this->load->model('Account_model');
     }
 
     public function index() {
@@ -20,9 +22,29 @@ class Submitter extends CI_Controller {
         
         $user = $this->Account_model->get_user_by_username($login['username']);
 
+
         $data = array();
         $data['user'] = $user;
         $data['confs'] = $this->confm->get_all_conferences();
+        $data['papers'] = array();
+
+        //here we verify if the user logged in has already submitted a paper to a given conference
+        //we build an array with indexes the id`s of the conference, 
+        //and values: 1 if exist paper submited to that conference, 0 otherwise
+        //we make this to build the edit method for the paper submitted in front-end
+
+        foreach ($data['confs'] as $conf) {
+
+            $paper = $this->paperm->get_paper_by_uid_cid($login['id'], $conf['id']);
+            if(isset($paper) and !empty($paper)) {
+
+                $data['papers'][$conf['id']] = 1;
+                $data['papers']['pid'] = $paper['id'];
+            } else {
+
+                $data['papers'][$conf['id']] = 0;
+            }
+        }
 
 		$this->load->view('header');
 		$this->load->view('submitter', $data);
@@ -90,6 +112,21 @@ class Submitter extends CI_Controller {
         $this->load->view('footer');
     }
 
+    public function edit_paper($paper_id = 0, $conference_id = 0) {
+
+        $this->load->model('Conference_model');
+        $login = $this->session->userdata('login');
+
+        $data['conf'] = $this->Conference_model->get_conference_by_id($conference_id);
+        $data['id_conference'] = $conference_id;
+        $data['paper'] = $this->paperm->get_paper_by_id($paper_id);
+        $data['id'] = $data['paper']['id'];
+
+        $this->load->view('header');
+        $this->load->view('submit', $data);
+        $this->load->view('footer');
+    }
+
     public function save($id = 0) {
 
         $this->load->library('form_validation');
@@ -132,8 +169,8 @@ class Submitter extends CI_Controller {
                     $this->session->set_flashdata('success', "Paper added successfull!");
                 }
             } else {
-                $this->db->where('paper', $id);
-                if($this->db->update('conference')) {
+                $this->db->where('id', $id);
+                if($this->db->update('paper')) {
                     $this->session->set_flashdata('success', "Paper updated successfull!");
                 }
             }
@@ -146,7 +183,7 @@ class Submitter extends CI_Controller {
             redirect('submitter/submit/'.$p['conference_id']);
         } else {
 
-            redirect('submitter/edit/'.$id);
+            redirect('submitter/edit_paper/'.$id.'/'.$p['conference_id']);
         }
     }
 
