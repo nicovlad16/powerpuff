@@ -29,7 +29,7 @@
 									<p><?= $conf['location'] ?></p>
 								</div>
 								<?php if($conf['paper_deadline'] > date("Y-m-d H:i:s")): ?>
-	                            	<a href="<?=base_url()?>login" class="tickets_btn buton_submit">Submit proposal</a> &nbsp;&nbsp;
+	                            	<a href="<?=base_url()?>submitter/submit/<?=$conf['id']?>" class="tickets_btn buton_submit">Submit proposal</a> &nbsp;&nbsp;
 	                            <?php endif; ?>
 	                            <a href="<?=base_url()?>login" class="tickets_btn buton_submit">Attend</a> &nbsp;&nbsp;
 	                            <a href="<?=base_url()?>home/details/<?= $conf['id'] ?>" class="tickets_btn buton_submit">Details</a>

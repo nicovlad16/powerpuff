@@ -32,15 +32,32 @@
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>register">Staff register</a>
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>submitter/register">Submitter register</a>
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>">Listener register</a>
-						<?php if(isset($login) && $login['type'] >= 1 && $login['type'] <= 3): ?>
+						<!-- <?php if(isset($login) && $login['type'] >= 1 && $login['type'] <= 3): ?>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
 								<ul class="dropdown-menu">
 									<li class="nav-item"><a class="nav-link" href="<?=base_url()?>conferences">Conferences</a></li>
 								</ul>
 							</li> 
-						<?php endif; ?>
+						<?php endif; ?> -->
 						<?php if(isset($login) and !empty($login)): ?>
+							<li class="nav-item submenu dropdown">
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
+								<ul class="dropdown-menu">
+									<?php if(isset($login) && $login['type'] >= 1 && $login['type'] <= 3): ?>
+										<li class="nav-item"><a class="nav-link" href="<?=base_url()?>conferences">Conferences</a></li>
+										<li class="nav-item"><a class="nav-link" href="<?=base_url()?>edit_account?id=<?=$login['id']?>">Edit account</a></li>
+									<?php endif; ?>
+									<?php if(isset($login) && $login['type'] == 4): ?>
+										<li class="nav-item"><a class="nav-link" href="<?=base_url()?>edit_account?id=<?=$login['id']?>">Edit account</a></li>
+									<?php endif; ?>
+									<?php if(isset($login) && $login['type'] == 5): ?>
+										<li class="nav-item"><a class="nav-link" href="<?=base_url()?>listener/edit/<?=$login['id']?>">Edit account</a></li>
+									<?php endif; ?>
+								</ul>
+							</li>
+						<?php endif; ?>
+						<?php if(isset($login) and !empty($login)): ?> 
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>login/logout">Logout</a></li>
 						</ul>
 							<ul class="nav navbar-nav navbar-right">

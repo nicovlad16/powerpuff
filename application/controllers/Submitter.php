@@ -102,6 +102,11 @@ class Submitter extends CI_Controller {
 
     public function submit($conference_id) {
 
+    	$login = $this->session->userdata('login');
+		if(!isset($login) || $login['type'] != 4) {
+			redirect();
+		}
+
         $this->load->model('Conference_model');
 
         $data['conf'] = $this->Conference_model->get_conference_by_id($conference_id);
@@ -113,6 +118,11 @@ class Submitter extends CI_Controller {
     }
 
     public function edit_paper($paper_id = 0, $conference_id = 0) {
+
+    	$login = $this->session->userdata('login');
+		if(!isset($login) || $login['type'] != 4) {
+			redirect();
+		}
 
         $this->load->model('Conference_model');
         $login = $this->session->userdata('login');
@@ -128,6 +138,11 @@ class Submitter extends CI_Controller {
     }
 
     public function save($id = 0) {
+
+    	$login = $this->session->userdata('login');
+		if(!isset($login) || $login['type'] != 4) {
+			redirect();
+		}
 
         $this->load->library('form_validation');
 
@@ -188,6 +203,11 @@ class Submitter extends CI_Controller {
     }
 
     function do_uploade() {
+
+    	$login = $this->session->userdata('login');
+		if(!isset($login) || $login['type'] != 4) {
+			redirect();
+		}
 
         $config['upload_path'] = './files';
         $config['allowed_types'] = 'gif|jpg|png|pdf';
