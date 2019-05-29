@@ -158,13 +158,15 @@ class Submitter extends CI_Controller {
             $login = $this->session->userdata('login');
             $p = $this->input->post();
 
-            $image = FALSE;
+            $file = FALSE;
 
             if($_FILES) {
 
                 $file = $this->do_uploade();
-                $this->db->set('file', $file);
-                $this->db->set('paper', $p['paper']);
+                if(isset($file) and !empty($file)) {
+
+                    $this->db->set('file', $file);
+                }
                                
             }
 
@@ -172,6 +174,7 @@ class Submitter extends CI_Controller {
             $this->db->set('keywords', $p['keywords']);
             $this->db->set('topics', $p['topics']);
             $this->db->set('meta_info', $p['meta_info']);
+            $this->db->set('paper', $p['paper']);
             $this->db->set('abstract', $p['abstract']);
             $this->db->set('uid', $login['id']);
             $this->db->set('cid', $p['conference_id']);
