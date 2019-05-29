@@ -122,12 +122,12 @@ class Submitter extends CI_Controller {
             $this->db->set('abstract', $p['abstract']);
             $this->db->set('paper', $p['paper']);
             $this->db->set('uid', $login['id']);
-            $this->db->set('cid', $id);
+            $this->db->set('cid', $p['conference_id']);
 
 
 
             if($id == 0) {
-                
+
                 if($this->db->insert('paper')) {
                     $this->session->set_flashdata('success', "Paper added successfull!");
                 }

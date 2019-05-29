@@ -12,4 +12,10 @@ class Account_model extends CI_Model {
 		$result = $this->db->get_where('user', array('username' => $username));
 		return $result->row_array();
 	}
+
+	public function get_user_by_id($id) {
+
+		$result = $this->db->get_where('user', array('id' => $id));
+		return $result->row_array();
+	}
 }
