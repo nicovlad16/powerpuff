@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: mai 29, 2019 la 10:21 PM
+-- Timp de generare: mai 30, 2019 la 01:37 AM
 -- Versiune server: 10.1.37-MariaDB
 -- Versiune PHP: 7.3.0
 
@@ -43,7 +43,8 @@ INSERT INTO `bidding` (`id`, `uid`, `answer`, `pid`) VALUES
 (3, 1, 0, 1),
 (4, 1, 0, 2),
 (6, 6, 1, 1),
-(8, 1, 1, 3);
+(8, 1, 1, 3),
+(9, 6, 1, 9);
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,8 @@ CREATE TABLE `conference` (
 INSERT INTO `conference` (`id`, `name`, `date_start`, `date_end`, `location`, `no_participants`, `no_speakers`, `abstract_deadline`, `bidding_deadline`, `paper_deadline`) VALUES
 (1, 'Conferinta IT', '2019-05-18 00:00:00', '2019-05-25 00:00:00', 'Str. Mihail Kogalniceanu', 20, 3, '2019-05-20 00:00:00', '2019-05-31 00:00:00', '2019-05-31 00:00:00'),
 (2, 'Dev talk', '2019-05-18 00:00:00', '2019-05-19 00:00:00', 'GG Byron', 0, 0, '2019-05-18 00:00:00', '2019-05-18 00:00:00', '2019-05-18 00:00:00'),
-(3, 'ICCP', '2019-05-18 00:00:00', '2019-05-19 00:00:00', 'FSEGA', 0, 0, '2019-05-18 00:00:00', '2019-05-28 00:00:00', '2019-05-18 00:00:00');
+(3, 'ICCP', '2019-05-18 00:00:00', '2019-05-19 00:00:00', 'FSEGA', 0, 0, '2019-05-18 00:00:00', '2019-05-28 00:00:00', '2019-05-18 00:00:00'),
+(4, 'Conferinta', '2019-05-31 00:00:00', '2019-05-31 00:00:00', 'FSEGA', 0, 0, '2019-05-31 00:00:00', NULL, '2019-05-31 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,9 @@ INSERT INTO `paper` (`id`, `abstract`, `title`, `keywords`, `topics`, `meta_info
 (1, 'Map Simple abstract', 'Map Simple', 'd', 'Google maps', 'd', '', NULL, 1, 5, 1),
 (2, 'Scopul conteaza abstract', 'Scopul conteaza', 'Keywords', 'Motivatie', 'Meta info', 'Scopul conteaza paper', NULL, NULL, 5, 1),
 (3, 'Lorem Ipsum dolor sit amet', 'Lorem Ipsum', 'Keywords', 'Lorem Ipsum', 'd', 'Lorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit amet', NULL, NULL, 5, 1),
-(4, 'asdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd as', 'test', 'Keywords', 'Motivatie', 'Meta info', '', NULL, NULL, 7, 3);
+(4, 'asdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd as', 'test', 'Keywords', 'Motivatie', 'Meta info', '', NULL, NULL, 7, 3),
+(5, 'dasdas', 'Lorem Ipsum Dolor', 'ddd', 'Motivatie', 'Meta info', 'asdasdas', 'biofizica.pdf', NULL, 4, 1),
+(9, 'dsac', 'test', 'd', 'Motivatie', 'Meta info', 'zcasdas', 'chart.pdf', 1, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,9 @@ INSERT INTO `review` (`id`, `pid`, `uid`, `qualifier`, `recomandation`) VALUES
 (4, 1, 3, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
 (5, 1, 3, -1, ''),
 (6, 1, 3, -2, ''),
-(7, 1, 3, -3, 'Yuk!');
+(7, 1, 3, -3, 'Yuk!'),
+(8, 9, 1, 2, 'dasdas'),
+(9, 9, 1, 0, 'xzXZ');
 
 -- --------------------------------------------------------
 
@@ -162,7 +168,9 @@ CREATE TABLE `reviewers_paper` (
 
 INSERT INTO `reviewers_paper` (`id`, `pid`, `uid`) VALUES
 (1, 1, 1),
-(4, 1, 3);
+(4, 1, 3),
+(5, 9, 6),
+(6, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -185,7 +193,11 @@ CREATE TABLE `session` (
 
 INSERT INTO `session` (`id`, `cid`, `hour_start`, `hour_end`, `room`, `no_participants`) VALUES
 (1, 2, '08:00', '12:00', 'L002', 0),
-(2, 2, '08:00', '12:00', 'L001', 0);
+(2, 2, '08:00', '12:00', 'L001', 0),
+(3, 1, '08:00', '12:00', 'L001', 0),
+(4, 1, '08:00', '12:00', 'L002', 0),
+(5, 2, '08:00', '12:00', 'L011', 0),
+(6, 4, '08:00', '12:00', 'L001', 0);
 
 -- --------------------------------------------------------
 
@@ -204,7 +216,8 @@ CREATE TABLE `session_participant` (
 --
 
 INSERT INTO `session_participant` (`id`, `uid`, `sid`) VALUES
-(1, 3, 1);
+(1, 3, 1),
+(3, 1, 6);
 
 -- --------------------------------------------------------
 
@@ -228,12 +241,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `type`, `name`, `email`, `affiliation`, `webpage`) VALUES
-(1, 'chair.boss', '4297f44b13955235245b2497399d7a93', 1, 'Chair Boss', 'chair@powerpuff.ro', NULL, NULL),
-(4, 'author', '4297f44b13955235245b2497399d7a93', 6, 'author', 'contact@webaround.ro', 'aff', NULL),
+(1, 'chair.boss', '4297f44b13955235245b2497399d7a93', 1, 'Chair Boss', 'chair@powerpuff.ro', 'aff', ''),
+(4, 'author', '4297f44b13955235245b2497399d7a93', 4, 'author', 'contact@webaround.ro', 'afffff', ''),
 (3, 'test', '4297f44b13955235245b2497399d7a93', 3, 'test', 'contact@webaround.ro', 'aff', 'http://localhost/powerpuff/register'),
 (5, 'submitter', '4297f44b13955235245b2497399d7a93', 4, 'submitter', 'submitter@powerpuff.ro', '', NULL),
-(6, 'chair', '4297f44b13955235245b2497399d7a93', 2, 'chair', 'char@test.com', '', ''),
-(7, 'andrei', '4297f44b13955235245b2497399d7a93', 4, 'Andrei', 'admin@admin.com', '', NULL);
+(6, 'chair', '4297f44b13955235245b2497399d7a93', 3, 'chair', 'char@test.com', '', ''),
+(7, 'andrei', '4297f44b13955235245b2497399d7a93', 5, 'Andrei', 'admin@admin.com', '', NULL),
+(8, 'cochair', '4297f44b13955235245b2497399d7a93', 2, 'cochair', 'victor.tudosa@gmail.com', 'aff', '');
 
 --
 -- Indexuri pentru tabele eliminate
@@ -301,19 +315,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pentru tabele `bidding`
 --
 ALTER TABLE `bidding`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pentru tabele `conference`
 --
 ALTER TABLE `conference`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pentru tabele `paper`
 --
 ALTER TABLE `paper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pentru tabele `presentation`
@@ -325,31 +339,31 @@ ALTER TABLE `presentation`
 -- AUTO_INCREMENT pentru tabele `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT pentru tabele `reviewers_paper`
 --
 ALTER TABLE `reviewers_paper`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pentru tabele `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pentru tabele `session_participant`
 --
 ALTER TABLE `session_participant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pentru tabele `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
