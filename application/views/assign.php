@@ -7,8 +7,9 @@
                     <a href="index.html">Home</a>
                     <a>Conferences</a>
                     <a>Proposals</a>
+                    <a>Assign reviewer</a>
                 </div>
-                <h2>Proposals</h2>
+                <h2>Assign reviewer</h2>
             </div>
         </div>
     </div>
@@ -34,21 +35,18 @@
         		<div class="event_schedule_inner">
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-							<?php if(isset($abstracts)): ?>
-								<?php foreach ($abstracts as $abs):?>
+							<?php if(isset($pc_members)): ?>
+								<?php foreach ($pc_members as $pcm):?>
 									<div class="media">
 										<div class="media-body">
-											<h4><?= $abs['title'] ?></h4>
-											<p>Topics: <?= $abs['topics'] ?></p>
+											<h4><?= $pcm['name'] ?></h4>
+											<p>Bidding answer: <?= $pcm['answer'] == 1 ? "Yes" : ($pcm['answer'] == 0 ? "No" : "Unvoted") ?></p>
 										</div>
-										<?php if($this->session->userdata('login')['type'] < 3): ?>
-                                        	<a href="<?=base_url()?>conferences/view_paper/<?=$abs['id']?>" class="tickets_btn buton_submit">View paper</a> &nbsp;&nbsp;
-                                        	<a href="<?=base_url()?>review/assign/<?=$abs['id']?>" class="tickets_btn buton_submit">Assign reviewer</a> &nbsp;&nbsp;
-                                        <?php endif; ?>
-										<?php if($abs['assigned'] == 1): ?>
-                                        	<a href="<?=base_url()?>review/index/<?=$abs['id']?>" class="tickets_btn buton_submit">Review</a> &nbsp;&nbsp;
-                                        <?php endif; ?>
-                                        <a href="<?=base_url()?>bidding/index/<?=$abs['id']?>" class="tickets_btn buton_submit">Bid abstract</a>
+										<?php if($pcm['assigned'] == 0): ?>
+                                        	<a href="<?=base_url()?>review/ass/<?=$proposal_id?>/<?=$pcm['id']?>" class="tickets_btn buton_submit">Assign</a>
+										<?php else: ?>
+											<p>Assigned</p>
+										<?php endif; ?>
 									</div>
 								<?php endforeach; ?>
 							<?php endif; ?>
