@@ -4,8 +4,8 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="contact.html">Register</a>
+                    <a>Home</a>
+                    <a>Register</a>
                 </div>
                 <h2>Register PC member</h2>
             </div>

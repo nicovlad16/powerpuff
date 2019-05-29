@@ -5,10 +5,10 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="contact.html">Login</a>
+                    <a>Home</a>
+                    <a>Login</a>
                 </div>
-                <h2>Login to your user account</h2>
+                <h2>Login</h2>
             </div>
         </div>
     </div>

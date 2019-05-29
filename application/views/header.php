@@ -20,7 +20,7 @@
         <div class="main_menu">
         	<nav class="navbar navbar-expand-lg navbar-light">
 				<div class="container box_1620">
-					<a class="navbar-brand logo_h" href="<?=base_url()?>"><img src="<?=base_url()?>application/views/img/logo.png" alt=""></a>
+					<!-- <a class="navbar-brand logo_h" href="<?=base_url()?>"><img src="<?=base_url()?>application/views/img/logo.png" alt=""></a> -->
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -29,36 +29,20 @@
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="<?=base_url()?>">Home</a></li> 
-							<li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li> 
-							<li class="nav-item"><a class="nav-link" href="speakers.html">Speakers</a>
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="schedule.html">Schedule</a>
-									<li class="nav-item"><a class="nav-link" href="venue.html">Venue</a>
-									<li class="nav-item"><a class="nav-link" href="price.html">Pricing</a> 
-									<li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-								</ul>
-							</li> 
-							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
-								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-									<li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
-								</ul>
-							</li> 
+							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>register">Staff register</a>
+							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>submitter/register">Submitter register</a>
+							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>">Listener register</a>
 						<?php if(isset($login) && $login['type'] >= 1 && $login['type'] <= 3): ?>
 							<li class="nav-item submenu dropdown">
-								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Conferences</a>
+								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
 								<ul class="dropdown-menu">
-									<li class="nav-item"><a class="nav-link" href="<?=base_url()?>conferences">My conferences</a></li>
+									<li class="nav-item"><a class="nav-link" href="<?=base_url()?>conferences">Conferences</a></li>
 								</ul>
 							</li> 
 						<?php endif; ?>
 						<?php if(isset($login) and !empty($login)): ?>
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>login/logout">Logout</a></li>
 						</ul>
-
 							<ul class="nav navbar-nav navbar-right">
 								<li class="nav-item"><a href="#" class="tickets_btn">Welcome <?= $login['username'] ?></a></li>
 							</ul>

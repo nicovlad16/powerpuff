@@ -4,8 +4,8 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="<?=base_url()?>submitter">Submitter</a>
+                    <a>Home</a>
+                    <a>Submitter</a>
                     <a>Submit</a>
                 </div>
                 <h2><?= isset($id) ? 'Edit paper' : 'Submit paper' ?></h2>

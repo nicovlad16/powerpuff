@@ -4,7 +4,7 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
+                    <a>Home</a>
                     <a>Conferences</a>
                     <a>Proposals</a>
                     <a>View proposal</a>

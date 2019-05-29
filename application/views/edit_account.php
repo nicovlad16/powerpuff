@@ -4,8 +4,8 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="<?=base_url()?>conferences">Conferences</a>
+                    <a>Home</a>
+                    <a>My account</a>
                     <a>Edit</a>
                 </div>
                 <h2>Edit account</h2>

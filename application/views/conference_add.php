@@ -4,8 +4,8 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="<?=base_url()?>conferences">Conferences</a>
+                    <a>Home</a>
+                    <a>Conferences</a>
                     <a><?= isset($id) ? 'Edit' : 'Add' ?></a>
                 </div>
                 <h2><?= isset($id) ? 'Edit conference' : 'Add conference' ?></h2>

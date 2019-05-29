@@ -4,10 +4,10 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="contact.html">Conferences</a>
+                    <a>Home</a>
+                    <a>Conferences</a>
                 </div>
-                <h2>My conferences</h2>
+                <h2>Conferences</h2>
             </div>
         </div>
     </div>
@@ -43,6 +43,7 @@
 											<h4><?= $conf['name'] ?> <a href="<?=base_url()?>conferences/edit/<?=$conf['id']?>"><i class="fa fa-pencil"></i></a></h4>
 											<p><?= $conf['location'] ?></p>
 										</div>
+                                        <a href="<?=base_url()?>sections/index/<?=$conf['id']?>" class="tickets_btn buton_submit">Sections</a> &nbsp;&nbsp;
                                         <a href="<?=base_url()?>conferences/proposals/<?=$conf['id']?>" class="tickets_btn buton_submit">View poposals</a>
 									</div>
 								<?php endforeach; ?>

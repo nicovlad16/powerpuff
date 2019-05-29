@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gazdă: 127.0.0.1
--- Timp de generare: mai 23, 2019 la 09:36 AM
+-- Timp de generare: mai 29, 2019 la 10:21 PM
 -- Versiune server: 10.1.37-MariaDB
 -- Versiune PHP: 7.3.0
 
@@ -42,7 +42,8 @@ CREATE TABLE `bidding` (
 INSERT INTO `bidding` (`id`, `uid`, `answer`, `pid`) VALUES
 (3, 1, 0, 1),
 (4, 1, 0, 2),
-(6, 6, 0, 4);
+(6, 6, 1, 1),
+(8, 1, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -68,9 +69,9 @@ CREATE TABLE `conference` (
 --
 
 INSERT INTO `conference` (`id`, `name`, `date_start`, `date_end`, `location`, `no_participants`, `no_speakers`, `abstract_deadline`, `bidding_deadline`, `paper_deadline`) VALUES
-(1, 'Conferinta IT', '2019-05-18 00:00:00', '2019-05-25 00:00:00', 'Str. Mihail Kogalniceanu', 20, 3, '2019-05-20 00:00:00', '2019-05-18 00:00:00', '2019-05-22 00:00:00'),
+(1, 'Conferinta IT', '2019-05-18 00:00:00', '2019-05-25 00:00:00', 'Str. Mihail Kogalniceanu', 20, 3, '2019-05-20 00:00:00', '2019-05-31 00:00:00', '2019-05-31 00:00:00'),
 (2, 'Dev talk', '2019-05-18 00:00:00', '2019-05-19 00:00:00', 'GG Byron', 0, 0, '2019-05-18 00:00:00', '2019-05-18 00:00:00', '2019-05-18 00:00:00'),
-(3, 'ICCP', '2019-05-18 00:00:00', '2019-05-19 00:00:00', 'FSEGA', 0, 0, '2019-05-18 00:00:00', NULL, '2019-05-18 00:00:00');
+(3, 'ICCP', '2019-05-18 00:00:00', '2019-05-19 00:00:00', 'FSEGA', 0, 0, '2019-05-18 00:00:00', '2019-05-28 00:00:00', '2019-05-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -97,7 +98,7 @@ CREATE TABLE `paper` (
 --
 
 INSERT INTO `paper` (`id`, `abstract`, `title`, `keywords`, `topics`, `meta_info`, `paper`, `file`, `answer`, `uid`, `cid`) VALUES
-(1, 'Map Simple abstract', 'Map Simple', 'd', 'Google maps', 'd', '', NULL, NULL, 5, 1),
+(1, 'Map Simple abstract', 'Map Simple', 'd', 'Google maps', 'd', '', NULL, 1, 5, 1),
 (2, 'Scopul conteaza abstract', 'Scopul conteaza', 'Keywords', 'Motivatie', 'Meta info', 'Scopul conteaza paper', NULL, NULL, 5, 1),
 (3, 'Lorem Ipsum dolor sit amet', 'Lorem Ipsum', 'Keywords', 'Lorem Ipsum', 'd', 'Lorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit ametLorem Ipsum dolor sit amet', NULL, NULL, 5, 1),
 (4, 'asdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd asasdasdas asdas dasd as', 'test', 'Keywords', 'Motivatie', 'Meta info', '', NULL, NULL, 7, 3);
@@ -130,6 +131,39 @@ CREATE TABLE `review` (
   `recomandation` text
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Eliminarea datelor din tabel `review`
+--
+
+INSERT INTO `review` (`id`, `pid`, `uid`, `qualifier`, `recomandation`) VALUES
+(1, 1, 3, 3, ''),
+(2, 1, 3, 2, ''),
+(3, 1, 3, 1, 'Good'),
+(4, 1, 3, 0, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+(5, 1, 3, -1, ''),
+(6, 1, 3, -2, ''),
+(7, 1, 3, -3, 'Yuk!');
+
+-- --------------------------------------------------------
+
+--
+-- Structură tabel pentru tabel `reviewers_paper`
+--
+
+CREATE TABLE `reviewers_paper` (
+  `id` int(11) NOT NULL,
+  `pid` int(11) NOT NULL,
+  `uid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Eliminarea datelor din tabel `reviewers_paper`
+--
+
+INSERT INTO `reviewers_paper` (`id`, `pid`, `uid`) VALUES
+(1, 1, 1),
+(4, 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -139,11 +173,19 @@ CREATE TABLE `review` (
 CREATE TABLE `session` (
   `id` int(11) NOT NULL,
   `cid` int(11) NOT NULL,
-  `hour_start` int(11) NOT NULL,
-  `hour_end` int(11) NOT NULL,
+  `hour_start` varchar(255) NOT NULL,
+  `hour_end` varchar(255) NOT NULL,
   `room` varchar(255) NOT NULL,
   `no_participants` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Eliminarea datelor din tabel `session`
+--
+
+INSERT INTO `session` (`id`, `cid`, `hour_start`, `hour_end`, `room`, `no_participants`) VALUES
+(1, 2, '08:00', '12:00', 'L002', 0),
+(2, 2, '08:00', '12:00', 'L001', 0);
 
 -- --------------------------------------------------------
 
@@ -156,6 +198,13 @@ CREATE TABLE `session_participant` (
   `uid` int(11) NOT NULL,
   `sid` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Eliminarea datelor din tabel `session_participant`
+--
+
+INSERT INTO `session_participant` (`id`, `uid`, `sid`) VALUES
+(1, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -221,6 +270,12 @@ ALTER TABLE `review`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexuri pentru tabele `reviewers_paper`
+--
+ALTER TABLE `reviewers_paper`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexuri pentru tabele `session`
 --
 ALTER TABLE `session`
@@ -246,7 +301,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pentru tabele `bidding`
 --
 ALTER TABLE `bidding`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pentru tabele `conference`
@@ -270,19 +325,25 @@ ALTER TABLE `presentation`
 -- AUTO_INCREMENT pentru tabele `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pentru tabele `reviewers_paper`
+--
+ALTER TABLE `reviewers_paper`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pentru tabele `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pentru tabele `session_participant`
 --
 ALTER TABLE `session_participant`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pentru tabele `user`

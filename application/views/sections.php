@@ -6,10 +6,9 @@
                 <div class="page_link">
                     <a>Home</a>
                     <a>Conferences</a>
-                    <a>Proposals</a>
-                    <a>Assign reviewer</a>
+                    <a>Sections</a>
                 </div>
-                <h2>Assign reviewer</h2>
+                <h2>Sections</h2>
             </div>
         </div>
     </div>
@@ -29,23 +28,24 @@
 	            <?= $this->session->flashdata('error'); ?>
 	        </div>
 	    <?php endif ?>
+        
         <section class="event_schedule_area">
         	<div class="container">
+        		<a href="<?=base_url()?>sections/add" class="genric-btn info-border" style="font-size: 14px;">Add new</a>
         		<br><br>
         		<div class="event_schedule_inner">
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-							<?php if(isset($pc_members)): ?>
-								<?php foreach ($pc_members as $pcm):?>
+							<?php if(isset($sections)): ?>
+								<?php foreach ($sections as $section):?>
 									<div class="media">
 										<div class="media-body">
-											<h4><?= $pcm['name'] ?></h4>
-											<p>Bidding answer: <?= $pcm['answer'] == 1 ? "Yes" : ($pcm['answer'] == 0 ? "No" : "Unvoted") ?></p>
+											<h5><?= $section['hour_start'] ?> -- <?= $section['hour_end'] ?></h5>
+											<h4><?= $section['name'] ?> <a href="<?=base_url()?>sections/edit/<?=$section['id']?>"><i class="fa fa-pencil"></i></a></h4>
+											<p>Room: <?= $section['room'] ?></p>
 										</div>
-										<?php if($pcm['assigned'] == 0): ?>
-                                        	<a href="<?=base_url()?>review/ass/<?=$proposal_id?>/<?=$pcm['id']?>" class="tickets_btn buton_submit">Assign</a>
-										<?php else: ?>
-											<p>Assigned</p>
+										<?php if($section['attend'] == 0): ?>
+                                        	<a href="<?=base_url()?>sections/attend/<?=$section['id']?>/<?=$id?>" class="tickets_btn buton_submit">Attend</a>
 										<?php endif; ?>
 									</div>
 								<?php endforeach; ?>

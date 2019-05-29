@@ -22,10 +22,8 @@
                 All you have to do now is to submit your paper!
             </h4>
         </div>
-        
     </div>
 </section>
-
 <section class="contact_area p_61">
     <div class="container">
         <section class="event_schedule_area">
