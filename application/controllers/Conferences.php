@@ -84,10 +84,56 @@ class Conferences extends CI_Controller {
 
 	public function proposals($id) {
 
-		$data['abstracts'] = $this->confm->get_papers_by_conf_id($id);
+		$this->load->model('review_model', 'revm');
+		$abstracts = $this->confm->get_papers_by_conf_id($id);
+		//$assigned = !empty($this->revm->check_assigned($proposal_id, $abs['id'])) ? 1 : 0;
+		$data['abstracts'] = array();
+		$k = 0;
+		foreach ($abstracts as $abs) {
+			$data['abstracts'][$k] = $abs;
+			$assigned = !empty($this->revm->check_assigned($abs['id'], $this->session->userdata('login')['id'])) ? 1 : 0;
+			$data['abstracts'][$k]['assigned'] = $assigned;
+
+			$k++;
+		}
 
 		$this->load->view('header');
 		$this->load->view('bid_conference', $data);
 		$this->load->view('footer');
 	}
+
+	public function view_paper($id) {
+
+		$this->load->model('review_model', 'revm');
+		
+		$data['id'] = $id;
+		$data['paper'] = $this->confm->get_paper_by_id($id);
+		$data['reviews'] = $this->revm->get_reviews($id);
+
+		$this->load->view('header');
+		$this->load->view('view_paper', $data);
+		$this->load->view('footer');
+	}
+
+	public function accept($id) {
+
+		$this->db->set('answer', 1);
+		$this->db->where('id', $id);
+		if($this->db->update('paper')) {
+			$this->session->set_flashdata('success', 'Paper accepted successfully!');
+		}
+
+		redirect('conferences/view_paper/'.$id);
+    }
+
+	public function reject($id) {
+
+		$this->db->set('answer', 0);
+		$this->db->where('id', $id);
+		if($this->db->update('paper')) {
+			$this->session->set_flashdata('success', 'Paper rejected successfully!');
+		}
+
+		redirect('conferences/view_paper/'.$id);
+    }
 }

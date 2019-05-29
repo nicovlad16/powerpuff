@@ -35,10 +35,17 @@
         			<div class="col-lg-12">
         				<div class="welcome_text">
         					<h3><?= $abs['title'] ?></h3>
+        					<?php if(!empty($abs['paper'])): ?>
+	        					<h4>Paper:</h4>
+	        					<p><?= $abs['paper'] ?></p>
+	        				<?php endif; ?>
         					<h4>Abstract:</h4>
         					<p><?= $abs['abstract'] ?></p>
         					<p><strong>Topics:</strong> <?= $abs['topics'] ?></p>
         					<p><strong>Keywords:</strong> <?= $abs['keywords'] ?></p>
+        					<?php if(!empty($abs['file'])): ?>
+								<a href="<?= base_url() ?>" target="_blank"><?= $abs['file'] ?></a>
+	        				<?php endif; ?>
         					<?php if($abs['bidding_deadline'] < date("Y-m-d H:i:s")): ?>
 								<div class="alert alert-danger" role="alert">
 						            Bidding process closed!
