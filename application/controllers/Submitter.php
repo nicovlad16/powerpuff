@@ -42,6 +42,7 @@ class Submitter extends CI_Controller {
                 $data['papers']['pid'] = $paper['id'];
                 $string = 'accepted'.$conf['id'];
                 $data['papers'][$string] = !empty($this->paperm->check_approved($paper['id'])) ? 1 : 0;
+
             } else {
 
                 $data['papers'][$conf['id']] = 0;
