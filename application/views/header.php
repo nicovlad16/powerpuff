@@ -31,7 +31,7 @@
 							<li class="nav-item active"><a class="nav-link" href="<?=base_url()?>">Home</a></li> 
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>register">Staff register</a>
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>submitter/register">Submitter register</a>
-							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>">Listener register</a>
+							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>listener/add">Listener register</a>
 						<?php if(isset($login) && $login['type'] >= 1 && $login['type'] <= 3): ?>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
