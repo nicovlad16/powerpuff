@@ -44,9 +44,11 @@
         					<p><strong>Topics:</strong> <?= $abs['topics'] ?></p>
         					<p><strong>Keywords:</strong> <?= $abs['keywords'] ?></p>
         					<?php if(!empty($abs['file'])): ?>
-								<strong>File:</strong> <a href="<?= base_url() ?>files/<?=$paper['file']?>" target="_blank"><?= $paper['file'] ?></a>
+								<strong>File:</strong> <a href="<?= base_url() ?>files/<?=$abs['file']?>" target="_blank"><?= $abs['file'] ?></a>
 	        				<?php endif; ?>
-        					<?php if($abs['bidding_deadline'] < date("Y-m-d H:i:s")): ?>
+	        				<br>
+	        				<br>
+        					<?php if($abs['bidding_deadline'] < date("Y-m-d H:i:s") && isset($abs['bidding_deadline'])): ?>
 								<div class="alert alert-danger" role="alert">
 						            Bidding process closed!
 						        </div>

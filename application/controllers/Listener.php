@@ -18,7 +18,12 @@ class Listener extends CI_Controller {
 
 		$data['confs'] = $this->confm->get_all_conferences();
 		$data['user'] = $this->accountm->get_user_by_id($login['id']);
+		$data['sessions'] = $this->confm->get_all_sessions();
+		$data['session_participants'] = $this->confm->get_all_session_participants_by_id($login['id']);
 
+		echo '<pre>';
+		print_r($data['session_participants']);
+		echo '</pre>';
 		$this->load->view('header');
 		$this->load->view('listener', $data);
 		$this->load->view('footer');
@@ -83,5 +88,24 @@ class Listener extends CI_Controller {
         } else {
         	redirect('listener/edit/'.$id);
         }
+    }
+
+    public function attend($sid = 0) {
+    	$login = $this->session->userdata('login');
+        if(!isset($login) || $login['type'] != 5) {
+            redirect();
+        }
+
+            $login = $this->session->userdata('login');
+            $p = $this->input->post();
+
+            $this->db->set('sid', $sid);
+            $this->db->set('uid', $login['id']);
+
+            if($this->db->insert('session_participant')) {
+                $this->session->set_flashdata('success', "Listener attend to conference successfull!");
+            }
+
+        redirect('listener');
     }
 }

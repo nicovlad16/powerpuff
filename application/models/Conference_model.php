@@ -15,6 +15,14 @@ class Conference_model extends CI_Model {
 		return $this->db->get()->result_array();
 	}
 
+	public function get_all_sessions() {
+
+		$this->db->select('s.*');
+		$this->db->from('session s');
+
+		return $this->db->get()->result_array();
+	}
+
 	public function get_conference_by_id($id) {
 
 		$this->db->select('c.*');
@@ -22,6 +30,24 @@ class Conference_model extends CI_Model {
 		$this->db->where('c.id', $id);
 
 		return $this->db->get()->row_array();
+	}
+
+	public function get_session_by_id($id) {
+
+		$this->db->select('s.*');
+		$this->db->from('session s');
+		$this->db->where('s.id', $id);
+
+		return $this->db->get()->row_array();
+	}
+
+	public function get_all_session_participants_by_id($uid) {
+
+		$this->db->select('s.*');
+		$this->db->from('session_participant s');
+		$this->db->where('s.uid', $uid);
+
+		return $this->db->get()->result_array();
 	}
 
 	public function get_papers_by_conf_id($id) {

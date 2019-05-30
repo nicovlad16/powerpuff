@@ -26,6 +26,7 @@ class Submitter extends CI_Controller {
         $data = array();
         $data['user'] = $user;
         $data['confs'] = $this->confm->get_all_conferences();
+        $data['sessions'] = $this->confm->get_all_sessions();
         $data['papers'] = array();
 
         //here we verify if the user logged in has already submitted a paper to a given conference
@@ -40,11 +41,19 @@ class Submitter extends CI_Controller {
 
                 $data['papers'][$conf['id']] = 1;
                 $data['papers']['pid'] = $paper['id'];
+                $string = 'accepted'.$conf['id'];
+                $data['papers'][$string] = !empty($this->paperm->check_approved($paper['id'])) ? 1 : 0;
+
             } else {
 
                 $data['papers'][$conf['id']] = 0;
             }
         }
+
+        /*echo "<pre>";
+        print_r($data['papers']);
+        echo "</pre>";
+        die();*/
 
 		$this->load->view('header');
 		$this->load->view('submitter', $data);
@@ -137,6 +146,22 @@ class Submitter extends CI_Controller {
         $this->load->view('footer');
     }
 
+    public function upload_presentation($session_id = 0) {
+
+        $login = $this->session->userdata('login');
+        if(!isset($login) || $login['type'] != 4) {
+            redirect();
+        }
+
+        $this->load->model('Conference_model');
+        $login = $this->session->userdata('login');
+        $data['session'] = $this->Conference_model->get_session_by_id($session_id);
+
+        $this->load->view('header');
+        $this->load->view('upload_presentation', $data);
+        $this->load->view('footer');
+    }
+
     public function save($id = 0) {
 
     	$login = $this->session->userdata('login');
@@ -203,6 +228,38 @@ class Submitter extends CI_Controller {
 
             redirect('submitter/edit_paper/'.$id.'/'.$p['conference_id']);
         }
+    }
+
+    public function save_presentation($sid = 0) {
+
+        $login = $this->session->userdata('login');
+        if(!isset($login) || $login['type'] != 4) {
+            redirect();
+        }
+
+            $login = $this->session->userdata('login');
+            $p = $this->input->post();
+
+            $file = FALSE;
+
+            if($_FILES) {
+
+                $file = $this->do_uploade();
+                if(isset($file) and !empty($file)) {
+
+                    $this->db->set('document', $file);
+
+                }    
+            }
+
+            $this->db->set('sid', $sid);
+            $this->db->set('uid', $login['id']);
+
+            if($this->db->insert('presentation')) {
+                $this->session->set_flashdata('success', "Paper uploaded successfull!");
+            }
+
+        redirect('');
     }
 
     function do_uploade() {

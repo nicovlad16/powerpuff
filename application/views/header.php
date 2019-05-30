@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/style.css">
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/responsive.css">
     <link rel="stylesheet" href="<?=base_url()?>application/views/css/custom.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <?php $login = $this->session->userdata('login'); ?>
 </head>
 <body>
@@ -31,7 +32,7 @@
 							<li class="nav-item active"><a class="nav-link" href="<?=base_url()?>">Home</a></li> 
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>register">Staff register</a>
 							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>submitter/register">Submitter register</a>
-							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>">Listener register</a>
+							<li class="nav-item"><a class="nav-link" href="<?=base_url()?>listener/add">Listener register</a>
 						<?php if(isset($login) and !empty($login)): ?>
 							<li class="nav-item submenu dropdown">
 								<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Account</a>
