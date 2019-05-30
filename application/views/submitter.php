@@ -4,8 +4,8 @@
         <div class="container">
             <div class="banner_content text-center">
                 <div class="page_link">
-                    <a href="index.html">Home</a>
-                    <a href="contact.html">Register</a>
+                    <a href="<?=base_url()?>">Home</a>
+                    <a href="<?=base_url()?>submitter">Submitter</a>
                 </div>
                 <h2>Submitter</h2>
             </div>
