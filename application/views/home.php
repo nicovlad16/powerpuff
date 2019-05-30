@@ -14,6 +14,19 @@
 <!--================Event Schedule Area =================-->
 <section class="event_schedule_area p_120">
 	<div class="container">
+		<?php if(isset($error)): ?>
+            <p><?= $error; ?></p>
+        <?php endif; ?>
+        <?php if($this->session->flashdata('success') != ''):?>
+            <div class="alert alert-success" role="alert">
+                <?= $this->session->flashdata('success'); ?>
+            </div>
+        <?php endif ?>
+        <?php if($this->session->flashdata('error') != ''):?>
+            <div class="alert alert-danger" role="alert">
+                <?= $this->session->flashdata('error'); ?>
+            </div>
+        <?php endif ?>
 		<div class="main_title">
 			<h2>Active conferences</h2>
 		</div>

@@ -52,8 +52,17 @@
                                             <h4><?= $conf['name'] ?> </h4>
                                             <p><?= $conf['location'] ?></p>
                                         </div>
- 											<?php if($papers[$conf['id']]['accepted'] == 1): ?>
-                                                <a href="<?=base_url()?>submitter/submit/<?=$conf['id']?>" class="tickets_btn buton_submit" name="Submit">Upload prez</a> &nbsp;&nbsp;
+ 											<?php $string = 'accepted'.$conf['id'];
+                                             if(isset($papers[$string]) and !empty($papers[$string]) and $papers[$string] == 1): ?>
+                                                <a href="#" class="tickets_btn buton_submit" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Upload prezentation</a> &nbsp;&nbsp;
+                                                <ul class="dropdown-menu">
+                                                        <?php foreach($sessions as $session):
+                                                                if($session['cid'] == $conf['id']):?>
+                                                                    <li class="nav-item"><a class="nav-link" href="<?=base_url()?>submitter/upload_presentation/<?=$session['id']?>"><?=$session['room']?></a></li>
+                                                                <?php endif; ?>
+                                                        <?php endforeach; ?>
+                                                    
+                                                </ul>
                                             <?php endif; ?>
                                             <?php if($papers[$conf['id']] == 0): ?>
                                                 <a href="<?=base_url()?>submitter/submit/<?=$conf['id']?>" class="tickets_btn buton_submit" name="Submit">Submit</a>
